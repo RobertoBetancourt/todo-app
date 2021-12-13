@@ -4,6 +4,7 @@ type Query {
 
 type Mutation {
   upsertToDo(data: UpsertToDoInput!): ToDo!
+  deleteToDo(data: DeleteToDoInput!): ToDo!
   toggleToDoCompleted(data: ToggleToDoCompletedInput!): ToDo!
 }
 
@@ -26,6 +27,10 @@ input UpsertToDoInput {
   title: String!
   content: String!
   dueDate: DateTime!
+}
+
+input DeleteToDoInput {
+  id: Int!
 }
 
 input ToggleToDoCompletedInput {

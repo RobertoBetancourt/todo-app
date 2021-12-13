@@ -1,4 +1,3 @@
-const { context, prisma } = require('./context')
 const express = require('express')
 const http = require('http')
 const { join } = require('path')
@@ -9,6 +8,10 @@ const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 const { loadFilesSync } = require('@graphql-tools/load-files')
 const { makeExecutableSchema } = require('@graphql-tools/schema')
 const { applyMiddleware } = require('graphql-middleware')
+// Context, resolvers and permissions
+const { resolvers } = require('./resolvers')
+const { prisma } = require('./context')
+const { permissions } = require('./permissions')
 
 async function startApolloServer () {
   // Required logic for integrating with Express
@@ -18,11 +21,13 @@ async function startApolloServer () {
   // Load schema from .graphql files
   const typeDefs = loadFilesSync(join(__dirname, './graphql'))
 
-  const schema = makeExecutableSchema({ typeDefs })
+  const schema = makeExecutableSchema({ typeDefs, resolvers })
+
+  const schemaWithMiddleware = applyMiddleware(schema, permissions)
 
   // Same ApolloServer initialization as always, plus the drain plugin.
   const server = new ApolloServer({
-    schema: schema,
+    schema: schemaWithMiddleware,
     context: request => {
       return {
         ...request,

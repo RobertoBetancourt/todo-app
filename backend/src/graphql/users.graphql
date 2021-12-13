@@ -1,5 +1,3 @@
-scalar DateTime
-
 type Mutation {
   signUp(data: SignUpInput!): AuthPayload!
   login(data: LoginInput!): AuthPayload!
@@ -29,3 +27,5 @@ type AuthPayload {
   token: String!
   user: User!
 }
+
+scalar DateTime
