@@ -1,0 +1,31 @@
+scalar DateTime
+
+type Mutation {
+  signUp(data: SignUpInput!): AuthPayload!
+  login(data: LoginInput!): AuthPayload!
+}
+
+type User {
+  email: String!
+  id: Int!
+  name: String
+  toDos: [ToDo!]!
+}
+
+# Input
+input SignUpInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+# Custom Payloads
+type AuthPayload {
+  token: String!
+  user: User!
+}
