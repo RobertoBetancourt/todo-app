@@ -12,6 +12,9 @@ const Query = {
       .toDos({
         where: {
           active: true
+        },
+        orderBy: {
+          dueDate: 'asc'
         }
       })
 

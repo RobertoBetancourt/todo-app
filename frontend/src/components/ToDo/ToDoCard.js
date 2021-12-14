@@ -46,6 +46,9 @@ const ToDoCard = ({ info, navigate, setOpen, setIdToDelete }) => {
     awaitRefetchQueries: true
   })
 
+  const dueDate = new Date(info?.dueDate)
+  const completedDate = new Date(info?.completedDate)
+
   return (
     <Card sx={{ minWidth: 275, mb: 2 }}>
       <CardContent>
@@ -66,7 +69,7 @@ const ToDoCard = ({ info, navigate, setOpen, setIdToDelete }) => {
                 sx={{ fontSize: 13, mb: 1 }}
                 gutterBottom
               >
-                {`Fecha límite: ${format(new Date(info.dueDate), 'dd/MM/yyyy')}`}
+                {`Fecha límite: ${format(new Date(dueDate.valueOf() + dueDate.getTimezoneOffset() * 60 * 1000), 'dd/MM/yyyy')}`}
               </Typography>}
             {info.completed &&
               <Typography
@@ -75,7 +78,7 @@ const ToDoCard = ({ info, navigate, setOpen, setIdToDelete }) => {
                 sx={{ fontSize: 13, mb: 1 }}
                 gutterBottom
               >
-                {`Tarea completada el ${format(new Date(info.completedDate), 'dd/MM/yyyy')}`}
+                {`Tarea completada el ${format(new Date(completedDate.valueOf() + completedDate.getTimezoneOffset() * 60 * 1000), 'dd/MM/yyyy')}`}
               </Typography>}
             <Typography variant='body1'>{info.content}</Typography>
           </Grid>

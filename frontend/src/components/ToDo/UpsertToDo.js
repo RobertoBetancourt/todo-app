@@ -8,7 +8,7 @@ import { UPSERT_TODO } from '../Mutations/Mutations'
 // Notistack
 import { useSnackbar } from 'notistack'
 // Queries
-import { GET_ALL_TODOS, GET_TO_DO } from '../Queries.js/Queries'
+import { GET_ALL_TODOS, GET_TO_DO } from '../Queries/Queries'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 // React Router
