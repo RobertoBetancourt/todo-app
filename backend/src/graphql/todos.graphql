@@ -1,5 +1,6 @@
 type Query {
   getAllToDos: [ToDo!]!
+  getToDo(data: GetToDoInput!): ToDo!
 }
 
 type Mutation {
@@ -25,8 +26,12 @@ type ToDo {
 input UpsertToDoInput {
   id: Int
   title: String!
-  content: String!
+  content: String
   dueDate: DateTime!
+}
+
+input GetToDoInput {
+  id: Int!
 }
 
 input DeleteToDoInput {

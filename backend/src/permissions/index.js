@@ -20,7 +20,8 @@ const rules = {
 
 const permissions = shield({
   Query: {
-    getAllToDos: rules.isAuthenticatedUser
+    getAllToDos: rules.isAuthenticatedUser,
+    getToDo: rules.isToDoOwner
   },
   Mutation: {
     upsertToDo: rules.isAuthenticatedUser,

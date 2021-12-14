@@ -7,6 +7,11 @@ const Mutation = {
     const { name, email, password } = args.data
     const hashedPassword = await hash(password, 10)
 
+    const registeredEmail = await context.prisma.user.findUnique({ where: { email } })
+    if (registeredEmail) {
+      throw new Error('El email ya se encuentra registrado.')
+    }
+
     const user = await context.prisma.user.create({
       data: {
         name,
