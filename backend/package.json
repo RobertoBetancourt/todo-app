@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "test": "jest"
   },
   "prettier": {
     "semi": false,
@@ -28,7 +29,10 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15",
+    "graphql-request": "^3.7.0",
     "prisma": "^3.6.0",
     "standard": "^16.0.4"
   },
