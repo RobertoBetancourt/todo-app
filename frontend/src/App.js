@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+// Components
+import Dashboard from './components/Dashboard/Dashboard'
+import Login from './components/Login/Login'
+import SignUp from './components/Login/SignUp'
+import PrivateRoute from './components/Routes/PrivateRoute'
+// Material UI
+import { CssBaseline } from '@mui/material'
+import UpsertToDo from './components/ToDo/UpsertToDo'
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <CssBaseline />
+      <Routes>
+        <Route path='/iniciar-sesion' element={<Login />} />
+        <Route path='/registro' element={<SignUp />} />
+        <Route
+          path='/'
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='crear-todo'
+          element={
+            <PrivateRoute>
+              <UpsertToDo />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='editar-todo/:toDo'
+          element={
+            <PrivateRoute>
+              <UpsertToDo />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App
