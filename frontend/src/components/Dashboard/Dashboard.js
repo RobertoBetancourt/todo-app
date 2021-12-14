@@ -32,11 +32,7 @@ const Dashboard = () => {
   }
 
   if (error) {
-    return (
-      <CustomContainer paddingTop={100}>
-        <Typography>Ha ocurrido un error</Typography>
-      </CustomContainer>
-    )
+    navigate('/iniciar-sesion')
   }
 
   let toDos = []
@@ -65,7 +61,7 @@ const Dashboard = () => {
         {
           toDos.length === 0 &&
             <Typography sx={{ mt: 8 }} variant='h4'>
-              No hay to-dos en este momento
+              No se han agregado to-do's
             </Typography>
         }
         {toDos.length > 0 &&
